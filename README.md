@@ -267,4 +267,35 @@ cds bind -2 freightorderattach-messaging:freightorderattach-messaging-key
 ![alt text](image-4.png)
 
 
+Test 
+
+
+
+
+
+```
+cap/freightorder/attach/ce/sap/s4/beh/FreightOrder/Created/v1
+```
+
+```json
+{
+"type":"sap.s4.beh.FreightOrder.Created.v1",
+"specversion":"1.0",
+"source":"/default/sap.s4.beh/740623809",
+"id":"07bebe98-fbca-1edf-bfe9-9231767df4f1",
+"time":"2025-03-12T14:16:20Z",
+"datacontenttype":"application/json",
+"data":
+{
+"TransportationOrderUUID":"07bebe98-fbca-1edf-bfe9-91f3ddb074f1",
+"TransportationOrder":"6600000955",
+"TransportationOrderType":"SFO2",
+"TransportationMode":"01",
+"TransportationShippingType":"18",
+"Carrier":"13386001",
+"TranspPurgOrgExtID":""
+}
+}
+```
+
 

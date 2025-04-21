@@ -7,6 +7,6 @@ service freightorder {
 
 
 
-annotate freightorder.SrvFreightOrder with @(requires: 'admin');
+//annotate freightorder.SrvFreightOrder with @(requires: 'admin');
 
 annotate freightorder.SrvFreightOrder with  @odata.draft.enabled;
