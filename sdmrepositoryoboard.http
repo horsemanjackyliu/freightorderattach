@@ -3,15 +3,13 @@
 
 //from uaa/clientid in sdm-key
 
-@cmisclientid = sb-9c868b6c-506a-4063-b792-2f5f2120f715!b114925|sdm-di-SDM_DI_PROD-prod!b41064
+@cmisclientid = sb-aeee41b7-11e9-4ca7-be3f-be118b9ac8d5!b149617|sdm-di-SDM_DI_PROD-prod!b41064
 
 //from uaa/clientsecret in sdm-key
 
-@cmisclientsecret = 2bcba531-62ea-4723-82d2-d44aaa4fe4d4$6ikixfVM8M8jHnqelMMNsopTYzVgHoqr6J3faZPJU7c=
+@cmisclientsecret = 1d4956e8-ea80-4efb-8b20-99925ab8adeb$KfefP-zOQFFNOjj8NEdIy31F6aGCKl_8r9Ekd5A6rdI=
 
-//from uaa/url in sdm-key
-
-@cmistokenurl = https://apjcoe-x66183k9.authentication.eu10.hana.ondemand.com
+@cmistokenurl = https://apjextabapsubdomain.authentication.eu10.hana.ondemand.com
 
 
 # @name getToken
