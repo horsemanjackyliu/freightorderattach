@@ -11,7 +11,7 @@
     "@sap-cloud-sdk/connectivity": "^3.26.1",
     "@sap-cloud-sdk/http-client": "^3.26.1",
     "@sap-cloud-sdk/resilience": "^3.26.1",
-    "@sap/cds": "^8",
+    "@sap/cds": "8.7.2",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "@sap/xssec": "^4",
     "express": "^4"
