@@ -63,8 +63,7 @@ modules:
       commands:
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: freightorderattach-destinations
     type: com.sap.application.content
@@ -103,7 +102,7 @@ resources:
     type: org.cloudfoundry.managed-service
     parameters:
       service: sdm
-      service-plan: free
+      service-plan: standard
   - name: freightorderattach-destination
     type: org.cloudfoundry.managed-service
     parameters:
