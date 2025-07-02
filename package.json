@@ -1,0 +1,89 @@
+{
+    "name": "freightorderattach",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@cap-js/attachments": "2.0.2",
+        "@cap-js/hana": "^1",
+        "@cap-js/sdm": "^1.5.0",
+        "@sap-cloud-sdk/connectivity": "^3.26.1",
+        "@sap-cloud-sdk/http-client": "^3.26.1",
+        "@sap-cloud-sdk/resilience": "^3.26.1",
+        "@sap/cds": "8.7.2",
+        "@sap/xb-msg-amqp-v100": "^0.9.58",
+        "@sap/xssec": "^3.6.1",
+        "express": "^4"
+    },
+    "devDependencies": {
+        "@cap-js/cds-types": "^0.9.0",
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^8.1.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-freightorderattachui5": "cds watch --open freightorderattachui5/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "log": {
+            "levels": {
+                "cds.services": "trace"
+            }
+        },
+        "requires": {
+            "sdm": {
+                "settings": {
+                    "repositoryId": "1a08f4cc-01a6-4245-bf6b-4ab39eeca789"
+                }
+            },
+            "CE_FREIGHTORDER_0001": {
+                "kind": "odata",
+                "model": "srv/external/CE_FREIGHTORDER_0001",
+                "[production]": {
+                    "credentials": {
+                        "destination": "O5PDN",
+                        "path": "/sap/opu/odata4/sap/api_freightorder/srvd_a2x/sap/freightorder/0001"
+                    }
+                },
+                "[hybrid]": {
+                    "credentials": {
+                        "url": "https://my3xxxxx-api.saps4hanacloud.cn/sap/opu/odata4/sap/api_freightorder/srvd_a2x/sap/freightorder/0001",
+                        "authentication": "BasicAuthentication",
+                        "username": "<username>",
+                        "password": "<password>"
+                    }
+                }
+            },
+            "[production]": {
+                "messaging": {
+                    "kind": "enterprise-messaging",
+                    "publishPrefix": "$namespace/",
+                    "subscribePrefix": "$namespace/",
+                    "queue": {
+                        "name": "$namespace/fo1"
+                    }
+                },
+                "db": "hana",
+                "auth": "xsuaa"
+            },
+            "[hybrid]": {
+                "messaging": {
+                    "kind": "enterprise-messaging-shared",
+                    "publishPrefix": "$namespace/",
+                    "subscribePrefix": "$namespace/"
+                }
+            },
+            "destinations": true,
+            "html5-repo": true,
+            "workzone": true
+        },
+        "sql": {
+            "native_hana_associations": false
+        }
+    },
+    "sapux": [
+        "app/freightorderattachui5"
+    ]
+}

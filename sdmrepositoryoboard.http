@@ -1,0 +1,75 @@
+//from uri in sdm-key
+@cmisuri = <uri>
+
+//from uaa/clientid in sdm-key
+
+@cmisclientid = <clientid>
+
+//from uaa/clientsecret in sdm-key
+
+@cmisclientsecret = <clientscret>
+@cmistokenurl = <token url>
+
+
+# @name getToken
+POST {{cmistokenurl}}/oauth/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic {{cmisclientid}}:{{cmisclientsecret}}
+
+client_id={{cmisclientid}}
+&grant_type=client_credentials
+
+###
+
+# @name createRepository
+@authToken = {{getToken.response.body.access_token}}
+POST {{cmisuri}}/rest/v2/repositories HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+	{
+		"repository": {
+			"displayName": "freightorderattach",
+			"description": "freightorderattach",
+			"repositoryType": "internal",
+			"isVersionEnabled":"false",
+			"isVirusScanEnabled":"false",
+			"skipVirusScanForLargeFile": "false",
+			"isThumbnailEnabled": "false",
+			"isEncryptionEnabled": "false",
+			"isClientCacheEnabled": "false",
+			"hashAlgorithms":"SHA-256",
+			"isContentBridgeEnabled" : "false" 
+			}
+	}
+
+
+
+###
+
+# @name getRepository
+@authToken = {{getToken.response.body.access_token}}
+GET {{cmisuri}}/browser HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+
+###
+
+# @name delRepository
+@authToken = {{getToken.response.body.access_token}}
+DELETE  {{cmisuri}}/browser/zfoattachment008 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+
+
+
+
+
+
+
+
+

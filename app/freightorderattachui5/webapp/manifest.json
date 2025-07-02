@@ -1,0 +1,189 @@
+{
+    "_version": "1.65.0",
+    "sap.app": {
+        "id": "freightorderattachui5",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.16.5",
+            "toolsId": "f6083438-43a7-44bd-83ad-9de35be410a7"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/freightorder/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "FreightOrder-Display": {
+                    "semanticObject": "FreightOrder",
+                    "action": "Display",
+                    "title": "{{FreightOrder-Display.flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                },
+                "freightorderattachui5-display": {
+                    "semanticObject": "freightorderattachui5",
+                    "action": "display",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.134.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "freightorderattachui5.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "SrvFreightOrderList",
+                    "target": "SrvFreightOrderList"
+                },
+                {
+                    "pattern": "SrvFreightOrder({key}):?query:",
+                    "name": "SrvFreightOrderObjectPage",
+                    "target": "SrvFreightOrderObjectPage"
+                },
+                {
+                    "pattern": "SrvFreightOrder({key})/FreightOrderItems({key2}):?query:",
+                    "name": "SrvFreightOrderItemObjectPage",
+                    "target": "SrvFreightOrderItemObjectPage"
+                }
+            ],
+            "targets": {
+                "SrvFreightOrderList": {
+                    "type": "Component",
+                    "id": "SrvFreightOrderList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/SrvFreightOrder",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "SrvFreightOrder": {
+                                    "detail": {
+                                        "route": "SrvFreightOrderObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "SrvFreightOrderObjectPage": {
+                    "type": "Component",
+                    "id": "SrvFreightOrderObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/SrvFreightOrder",
+                            "navigation": {
+                                "FreightOrderItems": {
+                                    "detail": {
+                                        "route": "SrvFreightOrderItemObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "SrvFreightOrderItemObjectPage": {
+                    "type": "Component",
+                    "id": "SrvFreightOrderItemObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/SrvFreightOrder/FreightOrderItems"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "freightorderattach.service"
+    }
+}
