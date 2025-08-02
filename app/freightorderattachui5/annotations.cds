@@ -243,6 +243,9 @@ annotate service.SrvFreightOrder with @(
             Value : TransportationShippingType,
         },
     ],
+    UI.Identification : [
+        
+    ],
 );
 
 annotate service.SrvFreightOrderItem with @(

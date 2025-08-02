@@ -160,6 +160,22 @@
                                         "route": "SrvFreightOrderItemObjectPage"
                                     }
                                 }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "suggestRoute": {
+                                            "press": "freightorderattachui5.ext.controller.ActionHandler.suggestRoute",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Ask LLM to Suggest Best Route",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "DeleteAction"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
