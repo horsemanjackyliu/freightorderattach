@@ -30,7 +30,6 @@ modules:
       - name: freightorderattach-messaging
       - name: freightorderattach-db
       - name: freightorderattach-auth
-      - name: freightorderattach-attachments
 
   - name: freightorderattach-db-deployer
     type: hdb
@@ -155,20 +154,8 @@ resources:
       config:
         xsappname: freightorderattach-${org}-${space}
         tenant-mode: dedicated
-    processed-after:
-      - freightorderattach-messaging
   - name: freightorderattach-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
-  - name: freightorderattach-attachments
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: objectstore
-      service-plan: standard
-  - name: freightorderattach-html5-runtime
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-runtime

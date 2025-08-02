@@ -9,17 +9,12 @@
         "@cap-js/attachments": "2.0.2",
         "@cap-js/hana": "^1",
         "@cap-js/sdm": "^1.5.0",
-        "@langchain/community": "0.3.39",
-        "@langchain/textsplitters": "0.1.0",
-        "@sap-ai-sdk/langchain": "1.10.0",
-        "@sap-ai-sdk/orchestration": "1.10.0",
         "@sap-cloud-sdk/connectivity": "^3.26.1",
         "@sap-cloud-sdk/http-client": "^3.26.1",
         "@sap-cloud-sdk/resilience": "^3.26.1",
         "@sap/cds": "8.7.2",
         "@sap/xb-msg-amqp-v100": "^0.9.58",
         "@sap/xssec": "^3.6.1",
-        "esbuild": "^0.25.8",
         "express": "^4"
     },
     "devDependencies": {
@@ -29,8 +24,7 @@
     },
     "scripts": {
         "start": "cds-serve",
-        "watch-freightorderattachui5": "cds watch --open freightorderattachui5/webapp/index.html?sap-ui-xx-viewCache=false",
-        "deps": "esbuild --platform=node srv/esm/index.js --bundle --outfile=srv/esm/bundle.js"
+        "watch-freightorderattachui5": "cds watch --open freightorderattachui5/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "log": {
@@ -41,7 +35,7 @@
         "requires": {
             "sdm": {
                 "settings": {
-                    "repositoryId": "27aeb49e-df08-4868-9b81-c0237ae96543"
+                    "repositoryId": "1a08f4cc-01a6-4245-bf6b-4ab39eeca789"
                 }
             },
             "CE_FREIGHTORDER_0001": {
@@ -49,14 +43,16 @@
                 "model": "srv/external/CE_FREIGHTORDER_0001",
                 "[production]": {
                     "credentials": {
-                        "destination": "ZFO_DESTINATION",
+                        "destination": "O5PDN",
                         "path": "/sap/opu/odata4/sap/api_freightorder/srvd_a2x/sap/freightorder/0001"
                     }
                 },
                 "[hybrid]": {
                     "credentials": {
-                        "destination": "ZFO_DESTINATION",
-                        "path": "/sap/opu/odata4/sap/api_freightorder/srvd_a2x/sap/freightorder/0001"
+                        "url": "https://my3xxxxx-api.saps4hanacloud.cn/sap/opu/odata4/sap/api_freightorder/srvd_a2x/sap/freightorder/0001",
+                        "authentication": "BasicAuthentication",
+                        "username": "<username>",
+                        "password": "<password>"
                     }
                 }
             },

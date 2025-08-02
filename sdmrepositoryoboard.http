@@ -1,14 +1,14 @@
 //from uri in sdm-key
-@cmisuri = https://api-sdm-di.cfapps.us10.hana.ondemand.com
+@cmisuri = <uri>
 
 //from uaa/clientid in sdm-key
 
-@cmisclientid = sb-2e8b6804-a5f7-45b1-a664-8576e312f62c!b38660|sdm-di-DocumentManagement-sdm_integration!b6332
+@cmisclientid = <clientid>
 
 //from uaa/clientsecret in sdm-key
 
-@cmisclientsecret = 2b60ce72-a114-44ed-bdcf-34e9755ab444$QagAUY9HOuwg5OJ6l7c_ealFUZeSKi0Qf9uyYkNcKho=
-@cmistokenurl = https://dpeapps.authentication.us10.hana.ondemand.com
+@cmisclientsecret = <clientscret>
+@cmistokenurl = <token url>
 
 
 # @name getToken
@@ -65,11 +65,7 @@ Authorization: Bearer {{authToken}}
 
 
 
-###
 
-# @name testfunction
-GET  http://localhost:4004/odata/v4/freightorder/SrvFreightOrder(TransportationOrderUUID='fa163ea1-6a76-1fe0-9694-2855aa39719f',IsActiveEntity=true)/suggestBestRoute()
-Content-Type: application/json
 
 
 
