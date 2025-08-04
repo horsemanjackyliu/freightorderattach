@@ -25,12 +25,11 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: freightorderattach-sdm
-      - name: freightorderattach-destination
-      - name: freightorderattach-messaging
-      - name: freightorderattach-db
       - name: freightorderattach-auth
-      - name: freightorderattach-aicore
+      - name: freightorderattach-db
+      - name: freightorderattach-messaging
+      - name: freightorderattach-attachments
+      - name: freightorderattach-destination
 
   - name: freightorderattach-db-deployer
     type: hdb
@@ -44,16 +43,39 @@ modules:
     type: com.sap.application.content
     path: gen
     requires:
+      - name: freightorderattach-auth
+      - name: srv-api
       - name: freightorderattach-html5-repo-host
         parameters:
           content-target: true
+          config:
+            HTML5Runtime_enabled: true
     build-parameters:
-      build-result: resources/
+      build-result: app/
       requires:
         - name: freightorderattachfreightorderattachui5
           artifacts:
             - freightorderattachui5.zip
-          target-path: resources/
+          target-path: app/
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
 
   - name: freightorderattachfreightorderattachui5
     type: html5
@@ -99,7 +121,34 @@ modules:
               sap.cloud.service: freightorderattach.service
 
 resources:
-  - name: freightorderattach-sdm
+  - name: freightorderattach-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: freightorderattach-${org}-${space}
+        tenant-mode: dedicated
+        role-collections:
+          - name: "admin (freightorderattach ${org}-${space})"
+            description: "generated"
+            role-template-references:
+              - "$XSAPPNAME.admin"
+    processed-after:
+      - freightorderattach-messaging
+  - name: freightorderattach-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: freightorderattach-messaging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: enterprise-messaging
+      service-plan: default
+      path: ./event-mesh.json
+  - name: freightorderattach-attachments
     type: org.cloudfoundry.managed-service
     parameters:
       service: sdm
@@ -115,18 +164,13 @@ resources:
           instance:
             existing_destinations_policy: update
             destinations:
-              - Name: freightorderattach-srv-api
+              - Name: srv-api
                 URL: ~{srv-api/srv-url}
                 Authentication: NoAuthentication
                 Type: HTTP
                 ProxyType: Internet
                 HTML5.ForwardAuthToken: true
                 HTML5.DynamicDestination: true
-              - Name: ui5
-                URL: https://ui5.sap.com
-                Authentication: NoAuthentication
-                Type: HTTP
-                ProxyType: Internet
     requires:
       - name: srv-api
         group: destinations
@@ -134,28 +178,7 @@ resources:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
-  - name: freightorderattach-messaging
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: enterprise-messaging
-      service-plan: default
-      path: ./event-mesh.json
-  - name: freightorderattach-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-  - name: freightorderattach-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: freightorderattach-${org}-${space}
-        tenant-mode: dedicated
-    processed-after:
-      - freightorderattach-messaging
+
   - name: freightorderattach-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
