@@ -4,6 +4,14 @@
     <VBox id="_IDGenVBox"  class="sapUiMediumMargin"  visible="true">
     <Label id="_IDGenLabel" text="Shipping Information" class="sapUiSmallMargin" />
     <TextArea id="shipContent" value="{/shipInfo}" width="1000px" height="300px"/>
+    <!-- <macros:Table id="_IDGenTable" xmlns:macro="sap.fe.macros" metaPath="{/shipInfo/ShipItems}"/> -->
+
+
+<!-- <macros:Form
+     id="myForm"
+     metaPath="{/shipInfo/ShipFromAddress}"
+     title="Shipping Address"
+></macros:Form> -->
     <Label id="_IDGenLabel1" text="LLM Suggest Content" class="sapUiSmallMargin" />
     <TextArea id="suggestContent" value="{/lLmSuggestion}"  width="1000px" height="300px" />
 		

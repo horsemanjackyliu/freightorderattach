@@ -352,7 +352,7 @@ application/json
 
 cds bind -2 freightorderattach-sdm:key
 cds bind -2 freightorderattach-messaging:key
-cds bind -2 freightorderattach-destination:freightorderattach-destinations-freightorderattach-destination-credentials
+cds bind -2 freightorderattach-destination:key
 
 cds bind -2 aicorehj:apikey
 
