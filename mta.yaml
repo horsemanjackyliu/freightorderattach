@@ -30,7 +30,7 @@ modules:
       - name: freightorderattach-messaging
       - name: freightorderattach-db
       - name: freightorderattach-auth
-      - name: freightorderattach-attachments
+      - name: freightorderattach-aicore
 
   - name: freightorderattach-db-deployer
     type: hdb
@@ -64,8 +64,7 @@ modules:
       commands:
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: freightorderattach-destinations
     type: com.sap.application.content
@@ -162,13 +161,12 @@ resources:
     parameters:
       service: html5-apps-repo
       service-plan: app-host
-  - name: freightorderattach-attachments
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: objectstore
-      service-plan: standard
   - name: freightorderattach-html5-runtime
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-runtime
+  - name: freightorderattach-aicore
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: aicorehj

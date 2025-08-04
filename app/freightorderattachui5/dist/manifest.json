@@ -160,6 +160,22 @@
                                         "route": "SrvFreightOrderItemObjectPage"
                                     }
                                 }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "suggestRoute": {
+                                            "press": ".extension.freightorderattachui5.ext.controller.ActionController.suggestRoute",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Ask LLM to Suggest Best Route",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "DeleteAction"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -173,6 +189,15 @@
                             "editableHeaderContent": false,
                             "contextPath": "/SrvFreightOrder/FreightOrderItems"
                         }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#freightorderattachui5::SrvFreightOrderObjectPage": {
+                        "controllerName": "freightorderattachui5.ext.controller.ActionController"
                     }
                 }
             }

@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:macros="sap.fe.macros">
+	<Dialog id="_IDGenDialog" title="LLM suggested information" resizable="true" contentHeight="1000px" contentWidth="1200px" verticalScrolling="true" core:require="{ handler: 'freightorderattachui5/ext/fragment/SuggestionFrag'}" >
+    <content>
+    <VBox id="_IDGenVBox"  class="sapUiMediumMargin"  visible="true">
+    <Label id="_IDGenLabel" text="Shipping Information" class="sapUiSmallMargin" />
+    <TextArea id="shipContent" value="{/shipInfo}" width="1000px" height="300px"/>
+    <Label id="_IDGenLabel1" text="LLM Suggest Content" class="sapUiSmallMargin" />
+    <TextArea id="suggestContent" value="{/lLmSuggestion}"  width="1000px" height="300px" />
+		
+	</VBox>
+    </content>
+    <Button id="_IDGenButton" text="Close" press="handler.onPress" icon="sap-icon://close-command-field" type="Default" />
+    </Dialog>
+</core:FragmentDefinition>

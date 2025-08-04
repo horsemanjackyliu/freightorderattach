@@ -1,0 +1,1 @@
+{"version":3,"file":"SuggestionFrag.js","names":["sap","ui","define","MessageToast","onPress","oEvent","getSource","getParent","close"],"sources":["SuggestionFrag-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,sBACD,SAAUC,GACT,aAEA,MAAO,CACHC,QAAS,SAAUC,GACfA,EAAOC,YAAYC,YAAYC,OAEnC,EAER","ignoreList":[]}
